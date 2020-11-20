@@ -1,4 +1,5 @@
 ﻿@page "/"
+@page "/simplist"
 @inject NavigationManager Navigation
 
 <div class="d-flex align-items-center fluid-container main" style="height: 100%">
@@ -20,6 +21,6 @@
 {
 	private void NavigateToTodo()
 	{
-		Navigation.NavigateTo("Todo");
+		Navigation.NavigateTo("/simplist/Todo");
 	}
 }

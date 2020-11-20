@@ -1,4 +1,4 @@
-﻿@page "/Todo"
+﻿@page "/simplist/Todo"
 @inject NavigationManager Navigate
 
 <div class="row">
@@ -8,7 +8,7 @@
 	<div class="col">
 		@if (!isFirst)
 		{
-			<span class="align-middle" style="float: right; color: #565656;" title="Progress"><b>@((int)progress)%</b></span>
+			<span class="align-middle" style="float: right; color: #565656; padding: 6px 12px;" title="Progress"><b>@((int)progress)%</b></span>
 		}
 	</div>
 </div>
