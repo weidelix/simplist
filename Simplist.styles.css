@@ -155,9 +155,20 @@ span[b-up7wthjtvi]
 .done-button[b-up7wthjtvi]
 {
 	margin-right: 15px;
+	font-size: 14px;
 	background-color: transparent;
 	color: rgb(15, 190, 15);
 	outline: none;
+}
+
+.done-button:hover[b-up7wthjtvi]
+{
+	font-size: 16px;
+}
+
+.done-button:active[b-up7wthjtvi]
+{
+	font-size: 18px;
 }
 
 .undone-button[b-up7wthjtvi]
@@ -167,6 +178,16 @@ span[b-up7wthjtvi]
 	background-color: transparent;
 	color: rgb(233, 0, 0);
 	outline: none;
+}
+
+.undone-button:hover[b-up7wthjtvi]
+{
+	font-size: 28px;
+}
+
+.undone-button:active[b-up7wthjtvi]
+{
+	font-size: 30px;
 }
 
 .done:focus[b-up7wthjtvi] {outline:0;}
