@@ -1,9 +1,8 @@
-﻿@page "/todo"
-@inject NavigationManager Navigate
+﻿@inject NavigationManager Navigate
 
 <div class="row">
 	<div class="col">
-		<a href="/simplist"><button class="btn" title="simplist"><h3>simp<i><b>list</b></i></h3></button></a>
+		<a href="/simplist" title="simplist"><button class="btn"><h3>simp<i><b>list</b></i></h3></button></a>
 	</div>
 	<div class="col">
 		@if (!isFirst)
@@ -59,7 +58,7 @@
 						<span class="align-middle">@todo.Title</span>
 					</div>
 					<div class="col" style="padding: 0px;">
-						<button class="undone-button" @onclick="@(e => { UnmarkItem(todo); GetProgress(); })" style="float: right"><b>🗙</b></button>
+						<button class="undone-button" @onclick="@(e => { UnmarkItem(todo); GetProgress(); })" style="float: right"><b>×</b></button>
 					</div>
 				</div>
 			}
@@ -135,5 +134,10 @@
 	private void UnmarkItem(TodoItem item)
 	{
 		item.IsDone = false;
+	}
+
+	private void NagivateTo()
+	{
+		Navigate.NavigateTo("Home");
 	}
 }
