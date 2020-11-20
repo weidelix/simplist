@@ -1,0 +1,53 @@
+h5, h1
+{
+	font-family: 'Open Sans';
+	color: #565656;
+}
+
+button
+{
+	font-size: 20px;
+	color: rgb(15, 190, 15);
+}
+
+input[type="button"],input[type="button"]:focus,input[type="button"]:active
+{
+	border: none;
+	outline: none;
+}
+
+.main
+{
+	padding: 30px;
+}
+
+.start
+{
+	font-size: 25px;
+	border: none;
+	outline: none;
+	background-color: white;
+}
+
+.start:hover
+{
+	animation-name: start;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+}
+
+@keyframes start
+{
+	from
+	{
+		font-size: 25px;
+		transform: rotate(0deg);
+		color: rgb(15, 190, 15);
+	}
+	to
+	{
+		font-size: 35px;
+		transform: rotate(360deg);
+		color: rgb(15, 190, 15);
+	}
+}	

@@ -1,0 +1,144 @@
+﻿@page "/todo"
+
+<div class="row">
+	<div class="col">
+		<a href="/" title="simplist"><button class="btn"><h3>simp<i><b>list</b></i></h3></button></a>
+	</div>
+	<div class="col">
+		@if (!isFirst)
+		{
+			<span class="align-middle" style="float: right; color: #565656;" title="Progress"><b>@((int)progress)%</b></span>
+		}
+	</div>
+</div>
+
+<div class="container">
+	@if (!todoList.Any() && (isFirst || !todoList.Any()))
+	{
+		<div class="row justify-content-center">
+			@if (isFirst)
+			{
+				<h2 class="no-work">Feeling <i><b>productive</b></i>? Add a task!</h2>
+			}
+			else
+			{
+				<h2 class="up-message no-work">Ready to <i><b>work </b></i>again?</h2>
+			}
+		</div>
+	}
+	
+	else if (todoList.Count == todoList.Count(todo => todo.IsDone) && todoList.Any())
+	{	
+		<div class="row message justify-content-center">
+			<h2 class="up-message work-done">All caught up! <i><b>Nice.</b></i></h2>
+		</div>
+	}
+
+
+	<div class="container list">
+		@foreach (var todo in todoList)
+		{
+			<!-- TASK IN PROGRESS -->
+			if (!todo.IsDone)
+			{
+				<div class="row item pending" style="overflow: hidden;">
+					<div class="col" style="padding: 15px;">
+						<span class="align-middle">@todo.Title</span>
+					</div>
+					<div class="col" style="padding: 0px;">
+						<button class="done-button" @onclick="@(e => { MarkItem(todo); GetProgress(); })" style="float: right"><b>✔</b></button>
+					</div>
+				</div>
+			}
+			<!-- FINISHED TASK -->
+			else 
+			{
+				<div class="row item done" style="overflow: hidden;">
+					<div class="col" style="padding: 15px;">
+						<span class="align-middle">@todo.Title</span>
+					</div>
+					<div class="col" style="padding: 0px;">
+						<button class="undone-button" @onclick="@(e => { UnmarkItem(todo); GetProgress(); })" style="float: right"><b>🗙</b></button>
+					</div>
+				</div>
+			}
+		}
+	</div>
+	<div class="row row-input">
+		<div class="col d-flex justify-content-center">
+			<button class="btn clear btn-sm" @onclick="ClearTodo" title="Clear List"><b>c</b></button>
+			<input placeholder="Add something todo" @onkeypress="EnterTodo" @bind="newTodo">
+			<button class="btn add btn-sm" @onclick="AddTodo" title="Add todo"><b>+</b></button>
+		</div>
+	</div>
+</div>
+
+@code 
+{
+	public class TodoItem
+   {
+      public string Title { get; set; }
+      public bool IsDone { get; set; }
+      public int Index { get; set; }
+   }
+
+	private IList<TodoItem> todoList = new List<TodoItem>();
+	private string newTodo = string.Empty;
+	private bool isFirst = true; 
+	private double progress = 0;
+
+	private void EnterTodo(KeyboardEventArgs e)
+	{
+		if (e.Key == "Enter")
+		{
+			isFirst = false;
+			if (!string.IsNullOrWhiteSpace(newTodo))
+			{
+				todoList.Add(new TodoItem{ Title = newTodo });
+				newTodo = string.Empty;
+				GetProgress();
+			}
+		}
+	}
+
+	private void AddTodo()
+	{
+		if (!string.IsNullOrWhiteSpace(newTodo))
+		{
+			isFirst = false;
+			todoList.Add(new TodoItem{ Title = newTodo });
+			newTodo = string.Empty;
+			GetProgress();
+		}
+	}
+
+	private void ClearTodo()
+	{
+		todoList.Clear();
+		GetProgress();
+	}
+
+	private void GetProgress()
+	{
+		todoList = todoList.OrderBy(todo => todo.IsDone).ToList();
+		int taskDone = todoList.Count(t => t.IsDone);
+		progress = (100.0 / (float)((todoList.Count != 0) ? todoList.Count : 1)) * (float)taskDone;
+		if (progress >= 99) progress = 100;
+	}
+
+	private void MarkItem(TodoItem item)
+	{
+		item.IsDone = true;
+	}
+
+	private void UnmarkItem(TodoItem item)
+	{
+		item.IsDone = false;
+	}
+
+	// Yoinked out of stackoverflow
+	// private float Lerp(float firstFloat, float secondFloat, float by)
+	// {
+   //  return firstFloat * (1 - by) + secondFloat * by;
+	// }
+}
