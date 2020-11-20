@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject NavigationManager Navigate
+@inject NavigationManager Navigation
 
 <div class="d-flex align-items-center fluid-container main" style="height: 100%">
 	<div style="width: 100%">
@@ -20,6 +20,6 @@
 {
 	private void NavigateToTodo()
 	{
-		Navigate.NavigateTo("Todo");
+		Navigation.NavigateTo("Todo");
 	}
 }

@@ -3,7 +3,7 @@
 
 <div class="row">
 	<div class="col">
-		<a href="/simplist" title="simplist"><button class="btn"><h3>simp<i><b>list</b></i></h3></button></a>
+		<a title="simplist"><button class="btn" @onclick="NavigateToHome"><h3>simp<i><b>list</b></i></h3></button></a>
 	</div>
 	<div class="col">
 		@if (!isFirst)
@@ -137,8 +137,8 @@
 		item.IsDone = false;
 	}
 
-	private void NagivateTo()
+	private void NavigateToHome()
 	{
-		Navigate.NavigateTo("Home");
+		Navigate.NavigateTo("/");
 	}
 }

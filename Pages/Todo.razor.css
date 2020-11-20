@@ -100,9 +100,20 @@ span
 .done-button
 {
 	margin-right: 15px;
+	font-size: 14px;
 	background-color: transparent;
 	color: rgb(15, 190, 15);
 	outline: none;
+}
+
+.done-button:hover
+{
+	font-size: 16px;
+}
+
+.done-button:active
+{
+	font-size: 18px;
 }
 
 .undone-button
@@ -112,6 +123,16 @@ span
 	background-color: transparent;
 	color: rgb(233, 0, 0);
 	outline: none;
+}
+
+.undone-button:hover
+{
+	font-size: 28px;
+}
+
+.undone-button:active
+{
+	font-size: 30px;
 }
 
 .done:focus {outline:0;}
